@@ -3,8 +3,10 @@
 
 
 <h1 align="center">Hi 👋, I'm Pradeep Reddy</h1>
-<h3 align="center">Turning cloud chaos into automation magic with Linux, AWS, Terraform & DevOps.
-🚀 Building scalable infrastructure | 🐳 Containerizing apps | ⚡ Automating workflows</h3>
+<h3 align="center">’m a DevOps enthusiast
+I love automating tasks and deploying microservices
+Worked on projects like RoboShop and Expense Management
+Continuously learning new technologies</h3>
 
 ---
 
