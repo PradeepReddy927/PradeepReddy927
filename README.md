@@ -40,7 +40,7 @@
 
 ---
 
-###  🔹  **Expense Project – Manual Deployment**
+###  🔹  **Expense e-commerce project – Manual Deployment**
 
 **Tools Used: Linux, AWS EC2, MySQL, Nginx, Node.js
 **Highlights:
@@ -56,8 +56,6 @@ Deployed Frontend using Nginx
 Managed EC2 instances, security groups, firewall, and networking configurations manually
 
 Ensured full connectivity between Database → Backend → Frontend
-
-🔗 *Repo:* (add your GitHub repo link)
 
 ---
 
