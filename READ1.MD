@@ -1,6 +1,5 @@
-<p align="center">
-  <img src="assets/git_banner.png" alt="GitHub Profile Banner"/>
-</p>
+<img src="https://github.com/PradeepReddy927/PradeepReddy927/blob/main/git_banner.png" alt="GitHub Banner" width="800"/>
+
 
 <h1 align="center">Hi 👋, I'm Pradeep Reddy</h1>
 <h3 align="center">DevOps Engineer | Linux | AWS | Terraform | Kubernetes | CI/CD</h3>
