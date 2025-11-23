@@ -73,7 +73,7 @@ Ensured full connectivity between Database → Backend → Frontend
 
 ---
 
-###   🔹 ** TERRAFORM**
+### 🔹 **TERRAFORM**
 
 ### summary 
 The Roboshop project demonstrates infrastructure automation and microservices deployment using Terraform.
