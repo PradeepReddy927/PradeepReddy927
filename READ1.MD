@@ -2,7 +2,7 @@
 
 
 <h1 align="center">Hi 👋, I'm Pradeep Reddy</h1>
-<h3 align="center">DevOps Engineer | Linux | AWS |</h3>
+<h3 align="center">DevOps | Linux | AWS </h3>
 
 ---
 
