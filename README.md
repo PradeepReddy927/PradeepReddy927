@@ -15,7 +15,7 @@
 
 ---
 
-## 🛠️ Skills & Tools
+## 🛠️ Show skills
 
 ### 🌐 Cloud & DevOps
 <p>
@@ -99,5 +99,13 @@ Ensured full connectivity between Database → Backend → Frontend
 
 
 
-![cyberpunk](https://github-contribution-cyberpunk.vercel.app/api/cyberpunk?user=PradeepReddy927)
+## 📊 GitHub Stats
+
+<div align="center">
+<img src="https://github-readme-stats.vercel.app/api?username=PradeepReddy927&theme=blueberry&show_icons=true&hide_border=true&count_private=true" alt="PradeepReddy927's GitHub Stats" />
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=PradeepReddy927&theme=blueberry&show_icons=true&hide_border=true&layout=compact" alt="PradeepReddy927's GitHub Stats" />
+<img src="https://streak-stats.demolab.com?user=PradeepReddy927&theme=blueberry&hide_border=true" alt="PradeepReddy927's GitHub Stats" />
+</div>
+
+---
 
