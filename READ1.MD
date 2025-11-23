@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/git_banner.png" alt="GitHub Profile Banner"/>
+</p>
+
 <h1 align="center">Hi 👋, I'm Pradeep Reddy</h1>
 <h3 align="center">DevOps Engineer | Linux | AWS | Terraform | Kubernetes | CI/CD</h3>
 
@@ -7,7 +11,7 @@
 - 🌱 I’m building my career in **DevOps & Cloud Engineering**
 - 🔧 Hands-on with **Linux, Shell Scripting, Ansible, Terraform, Jenkins, GitHub Actions, Docker, AWS, Kubernetes**
 - 💡 I enjoy automating deployments, solving environment issues, and designing scalable infra
-- 📚 Currently learning **Kubernetes & Advanced Terraform (modules, ALB, ASG)**
+- 📚 Currently learning **Kubernetes & Advance Terraform & Docker (modules, ALB, ASG)**
 
 ---
 
@@ -30,25 +34,29 @@
 ## 📌 Projects
 
 ### 🔹 **Roboshop Microservices Deployment**
-**Tools:** Shell Scripting, Ansible, Terraform, AWS, Linux  
+**Tools:** Shell Scripting
 **Highlights:**
 - Automated microservices deployment (catalogue, user, cart, payment, shipping, frontend)
-- Created Terraform modules for **VPC, ALB, Autoscaling, EC2 backend**
-- Automated service installation using **Ansible roles**
-- Configured **systemd, load balancer routing, S3 buckets**
-- End-to-end deployment on **AWS**
-
-🔗 *Repo:* (add your GitHub repo link)
+🔗 *Repo:* (https://github.com/PradeepReddy927/shell-roboshop.git)
 
 ---
 
-### 🔹 **Expense Project – Infrastructure Automation**
-**Tools:** Terraform, Ansible, Shell Scripting  
-**Highlights:**
-- Built infra using **Terraform + modules**
-- Automated application setup with **Ansible playbooks**
-- Deployed MySQL, backend, frontend components
-- Configured IAM roles, VPC, security groups
+###  🔹  **Expense Project – Manual Deployment**
+
+**Tools Used: Linux, AWS EC2, MySQL, Nginx, Node.js
+**Highlights:
+
+Deployed complete 3-tier Expense application manually
+
+Installed and configured MySQL Database
+
+Deployed Backend service using Node.js with systemd
+
+Deployed Frontend using Nginx
+
+Managed EC2 instances, security groups, firewall, and networking configurations manually
+
+Ensured full connectivity between Database → Backend → Frontend
 
 🔗 *Repo:* (add your GitHub repo link)
 
@@ -81,9 +89,9 @@
 ---
 
 ## 📫 Connect With Me  
-📧 **Email:** *your-email*  
-🔗 **LinkedIn:** add your LinkedIn link  
-🔗 **GitHub:** your profile  
+📧 **Email:** *prem.pradeepreddy@gmail.com*  
+🔗 **LinkedIn:** www.linkedin.com/in/pradeep-reddy-938809305 
+🔗 **GitHub:** https://github.com/PradeepReddy927
 
 ---
 
