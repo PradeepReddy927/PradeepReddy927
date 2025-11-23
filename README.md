@@ -1,5 +1,5 @@
 
-<img src="https://github.com/PradeepReddy927/PradeepReddy927/blob/main/git_banner.png" alt="GitHub Banner" width="800"/>
+<img src="https://github.com/PradeepReddy927/PradeepReddy927/blob/main/GIthub_banner.png" alt="GitHub Banner" width="800"/>
 
 
 <h1 align="center">Hi 👋, I'm Pradeep Reddy</h1>
