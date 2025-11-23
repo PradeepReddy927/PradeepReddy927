@@ -34,10 +34,9 @@
 ## 📌 Projects
 
 ### 🔹 **Roboshop Microservices Deployment**
-**Tools:** Shell Scripting
+**Tools:** Shell Scripting, Ansible, Terraform
 **Highlights:**
 - Automated microservices deployment (catalogue, user, cart, payment, shipping, frontend)
-🔗 *Repo:* (https://github.com/PradeepReddy927/shell-roboshop.git)
 
 ---
 
@@ -68,8 +67,6 @@ Ensured full connectivity between Database → Backend → Frontend
 - Log monitoring scripts  
 - User and package management  
 - Roboshop service automation  
-
-🔗 *Repo:* (add link)
 
 ---
 
@@ -112,28 +109,12 @@ By leveraging advanced Terraform features like loops, dynamic blocks, lifecycle 
 
 ---
 
-
-
----
-
-## 🔹 Docker 
-- Docker  Ingress + Helm  
-- Terraform advanced modules  
-- Jenkins Shared Libraries  
-- AWS autoscaling and cost optimization  
-
----
-
 ## 📫 Connect With Me  
 📧 **Email:** *prem.pradeepreddy@gmail.com*  
 🔗 **LinkedIn:** www.linkedin.com/in/pradeep-reddy-938809305 
 🔗 **GitHub:** https://github.com/PradeepReddy927
 
 ---
-
-⭐ *Feel free to explore my repositories — I’m actively building DevOps projects!*
-
-
 
 ## 📊 GitHub Stats
 
