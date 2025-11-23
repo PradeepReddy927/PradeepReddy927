@@ -3,10 +3,7 @@
 
 
 <h1 align="center">Hi 👋, I'm Pradeep Reddy</h1>
-<h3 align="center">’m a DevOps enthusiast
-I love automating tasks and deploying microservices
-Worked on projects like RoboShop and Expense Management
-Continuously learning new technologies</h3>
+<h3 align="center">A DevOps engineer dedicated to optimizing workflows and deploying scalable applications</h3>
 
 ---
 
