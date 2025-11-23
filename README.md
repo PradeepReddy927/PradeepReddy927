@@ -73,15 +73,51 @@ Ensured full connectivity between Database → Backend → Frontend
 
 ---
 
-## ⚙️ CI/CD Experience
-- GitHub Actions pipelines: build → test → deploy  
-- Jenkins CI/CD: freestyle & pipeline jobs  
-- Integrated Terraform, Ansible & Docker into pipelines
+###   🔹 ** TERRAFORM**
+
+### summary 
+The Roboshop project demonstrates infrastructure automation and microservices deployment using Terraform.
+By leveraging advanced Terraform features like loops, dynamic blocks, lifecycle rules, data sources, remote backend, import, and provisioners, this project achieves a modular, scalable, and production-ready architecture for a multi-service e-commerce application.
+
+## Key Terraform Features Used
+- count & for_each loops – Dynamically create multiple resources (EC2, subnets, SG rules)
+
+- dynamic blocks – Generate nested blocks like multiple SG rules or ALB listeners
+
+- lifecycle rules (create_before_destroy) – Update resources without downtime
+
+- Data sources – Fetch latest AMIs, VPC/subnet IDs, Route53 zones dynamically
+
+- Remote backend (S3 + DynamoDB) – Centralized state management with locking
+
+- Terraform import – Bring existing AWS resources under Terraform management
+
+- Reusable modules – VPC, SG, EC2, ALB, and database modules for maintainable and consistent deployments
+
+### 🏗 Infrastructure Deployed
+
+- VPC – Public & private subnets with NAT Gateway & Internet Gateway
+
+- Security Groups – Modular SGs for Bastion, ALB, App, and Database
+
+- Bastion Host – Secure SSH access to private EC2 instances
+
+- RDS / MongoDB – Hosted in private subnets with secure SG rules
+
+- Backend ALB & Frontend ALB – Load balancing for microservices and frontend UI
+
+- EC2 Instances – Catalogue, User, Cart, Payment, Shipping, Frontend microservices
+
+- CloudFront CDN – Distributes frontend globally, improves performance
 
 ---
 
-## 📈 What I'm Currently Learning
-- Kubernetes Ingress + Helm  
+
+
+---
+
+## 🔹 Docker 
+- Docker  Ingress + Helm  
 - Terraform advanced modules  
 - Jenkins Shared Libraries  
 - AWS autoscaling and cost optimization  
