@@ -3,7 +3,9 @@
 
 
 <h1 align="center">Hi 👋, I'm Pradeep Reddy</h1>
-<h3 align="center">DevOps | Linux | AWS </h3>
+<h3 align="center">DevOps Engineer & Cloud Enthusiast
+I build scalable infrastructures, deploy microservices, and automate end-to-end workflows.
+💡 Notable Projects: RoboShop automation, Expense Project deployment, AWS infrastructure with ALB & AutoScaling S</h3>
 
 ---
 
