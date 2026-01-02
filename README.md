@@ -34,7 +34,7 @@
 ## 📌 Projects
 
 ### 🔹 **Roboshop Microservices Deployment**
-**Tools:** Shell Scripting, Ansible, Terraform
+**Tools:** Shell Scripting, Ansible, Terraform, Docker, kubernetes, 
 **Highlights:**
 - Automated microservices deployment (catalogue, user, cart, payment, shipping, frontend)
 
@@ -97,14 +97,15 @@ By leveraging advanced Terraform features like loops, dynamic blocks, lifecycle 
 
 - Bastion Host – Secure SSH access to private EC2 instances
 
-- RDS / MongoDB – Hosted in private subnets with secure SG rules
-
 - Backend ALB & Frontend ALB – Load balancing for microservices and frontend UI
 
 - EC2 Instances – Catalogue, User, Cart, Payment, Shipping, Frontend microservices
 
-- CloudFront CDN – Distributes frontend globally, improves performance
-
+---
+### 🔹 **DOCKER**
+### **SUMMARY**
+A Dockerfile is a text file that contains instructions to create a Docker image. It defines what software to install, how the application is set up, and how the container should run. Dockerfiles help make applications portable, consistent, and easy to deploy.
+### Image Build Instructions 
 ---
 
 ## 📫 Connect With Me  
