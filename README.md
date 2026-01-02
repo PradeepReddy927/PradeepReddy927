@@ -1,7 +1,4 @@
-
-<p align="center">
-  <img src="https://capsule-render.vercel.app/api?text=Hey Everyone!🕹️&animation=fadeIn&type=waving&color=gradient&height=100"/>
-</p>
+<img src="https://github.com/PradeepReddy927/PradeepReddy927/blob/main/Github_banner.png" alt="GitHub Banner" width="800"/>
 
 
 <h1 align="center">Hi 👋, I'm Pradeep Reddy</h1>
