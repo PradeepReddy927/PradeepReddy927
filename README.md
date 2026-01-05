@@ -1,8 +1,9 @@
 
- ![Image Alt](https://github.com/PradeepReddy927/PradeepReddy927/blob/2f583c1c37252c12c3546c72f8eae673291b7df8/gitbanner.png)
+<img src="https://github.com/PradeepReddy927/PradeepReddy927/blob/5b9c42b9708bb1afccf50919dd4f3ef498c66ed5/gitbanner.png" alt="GitHub Banner" width="800"/>
 
 <h1 align="center">Hi 👋, I'm Pradeep Reddy</h1>
 <h3 align="center">A DevOps engineer dedicated to optimizing workflows and deploying scalable applications</h3>
+<img align="right" alt="Coding" width="400" src="https://magiccopy.xyz/assets/images/hadder.gif">
 
 ---
 
