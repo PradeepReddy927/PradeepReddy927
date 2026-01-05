@@ -1,6 +1,5 @@
 
- ![Image Alt](https://github.com/PradeepReddy927/PradeepReddy927/blob/bf17bb94068f9f73c4c29969540bba9137bb3cf4/GIthub_banner.png)
-
+ ![Image Alt](https://github.com/PradeepReddy927/PradeepReddy927/blob/2f583c1c37252c12c3546c72f8eae673291b7df8/gitbanner.png)
 
 <h1 align="center">Hi 👋, I'm Pradeep Reddy</h1>
 <h3 align="center">A DevOps engineer dedicated to optimizing workflows and deploying scalable applications</h3>
