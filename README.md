@@ -57,55 +57,128 @@ Managed EC2 instances, security groups, firewall, and networking configurations 
 Ensured full connectivity between Database → Backend → Frontend
 
 ---
+## 🏗️ End-to-End DevOps Project – RoboShop
 
-### 🔹 **Shell Scripting – 25+ Automation Scripts**
-**Topics Covered:** Variables, functions, loops, conditions, monitoring, user management  
-- Automated server health checks  
-- Log monitoring scripts  
-- User and package management  
-- Roboshop service automation  
+This profile contains a **complete DevOps lifecycle implementation** of the RoboShop microservices application, covering:
+
+- Infrastructure provisioning on AWS using Terraform  
+- Configuration management with Ansible  
+- Containerization using Docker  
+- Kubernetes deployments (EKS)  
+- CI/CD pipelines with Jenkins  
+- Helm-based packaging  
+- GitOps-based deployments using ArgoCD  
+
+The projects follow **real-world DevOps architecture and best practices**.
+
+---
+
+## 🐚 Shell Scripting & Linux Automation
+
+Repositories focused on Linux administration and automation:
+
+- **shell-roboshop** – Automated installation and configuration of RoboShop services using Shell scripts  
+- **shell-roboshop-common** – Common reusable shell functions and shared logic  
+- **shell-practice** – Bash scripting fundamentals and practice scripts  
+
+✔ Emphasis on automation, repeatability, and error handling.
 
 ---
 
-### 🔹 **TERRAFORM**
+## ⚙️ Ansible – Configuration Management
 
-### summary 
-The Roboshop project demonstrates infrastructure automation and microservices deployment using Terraform.
-By leveraging advanced Terraform features like loops, dynamic blocks, lifecycle rules, data sources, remote backend, import, and provisioners, this project achieves a modular, scalable, and production-ready architecture for a multi-service e-commerce application.
+Repositories demonstrating Ansible usage for application deployment and server configuration:
 
-## Key Terraform Features Used
-- count & for_each loops – Dynamically create multiple resources (EC2, subnets, SG rules)
+- **ansible** – Ansible fundamentals and playbooks  
+- **ansible-roboshop** – RoboShop deployment using Ansible  
+- **ansible-roboshop-roles** – Role-based Ansible architecture  
+- **ansible-roboshop-roles-tf** – Ansible integrated with Terraform  
 
-- dynamic blocks – Generate nested blocks like multiple SG rules or ALB listeners
-
-- lifecycle rules (create_before_destroy) – Update resources without downtime
-
-- Data sources – Fetch latest AMIs, VPC/subnet IDs, Route53 zones dynamically
-
-- Remote backend (S3 + DynamoDB) – Centralized state management with locking
-
-- Terraform import – Bring existing AWS resources under Terraform management
-
-- Reusable modules – VPC, SG, EC2, ALB, and database modules for maintainable and consistent deployments
-
-### 🏗 Infrastructure Deployed
-
-- VPC – Public & private subnets with NAT Gateway & Internet Gateway
-
-- Security Groups – Modular SGs for Bastion, ALB, App, and Database
-
-- Bastion Host – Secure SSH access to private EC2 instances
-
-- Backend ALB & Frontend ALB – Load balancing for microservices and frontend UI
-
-- EC2 Instances – Catalogue, User, Cart, Payment, Shipping, Frontend microservices
+✔ Role-based design  
+✔ Idempotent configurations  
+✔ Environment-specific deployments  
 
 ---
-### 🔹 **DOCKER**
-### **SUMMARY**
-A Dockerfile is a text file that contains instructions to create a Docker image. It defines what software to install, how the application is set up, and how the container should run. Dockerfiles help make applications portable, consistent, and easy to deploy.
-### Image Build Instructions 
+
+## 🌍 Terraform – AWS Infrastructure as Code
+
+Terraform repositories covering AWS infrastructure provisioning:
+
+- **terraform-multiple-env** – Multi-environment Terraform setup  
+- **terraform-aws-instance** – EC2 provisioning  
+- **terraform-aws-vpc** – VPC module implementation  
+- **terraform-aws-sg** – Security Group module  
+- **terraform-roboshop-component** – Component-based infrastructure design  
+- **roboshop-dev-infra** – Complete RoboShop AWS infrastructure  
+- **roboshop-terraform-eks** – EKS provisioning using Terraform  
+
+✔ Modular and reusable Terraform code  
+✔ Secure and scalable AWS architecture  
+
 ---
+
+## 🐳 Docker – Containerization
+
+- **dockerfiles** – Dockerfiles for microservices  
+- **roboshop-docker** – Containerized RoboShop services  
+
+✔ Focus on building optimized and production-ready images.
+
+---
+
+## ☸️ Kubernetes – Container Orchestration
+
+Kubernetes repositories demonstrating core and advanced concepts:
+
+- **k8-roboshop** – RoboShop deployments on Kubernetes  
+- **k8-roboshop-databases** – Database and cache deployments  
+- **k8-selectors** – Labels and selectors  
+- **k8-rbac** – Role-Based Access Control  
+- **k8-ingress** – Ingress configuration  
+- **k8-resources** – Resource requests and limits  
+- **k8-blue-green** – Blue-Green deployment strategy  
+- **eksctl** – EKS cluster lifecycle management  
+
+✔ Production-style Kubernetes configurations  
+✔ Security, traffic management, and rollout strategies  
+
+---
+
+## 📦 Helm & GitOps
+
+- **roboshop-helm** – Helm charts for RoboShop microservices  
+- **eks-argocd** – GitOps-based Kubernetes deployments using ArgoCD  
+
+✔ Declarative deployments  
+✔ Git-driven cluster state management  
+
+---
+
+## 🔁 CI/CD & DevOps Practices
+
+Repositories related to CI/CD pipelines and DevOps methodologies:
+
+- **jenkins** – Jenkins pipelines  
+- **jenkins-shared-library** – Reusable Jenkins shared libraries  
+- **cicd-tools** – CI/CD tools and integrations  
+- **branching-strategy** – Git branching models  
+- **concepts** – DevOps and cloud concepts  
+
+✔ End-to-end build, test, and deployment automation  
+
+---
+
+## 🧩 Microservices Repositories
+
+Application and deployment repositories for RoboShop services:
+
+- **catalogue**, **catalogue-deploy**, **catalogue-unit-tests**  
+- **user**, **user-deploy**  
+- **cart**, **cart-deploy**  
+- **shipping**, **shipping-deploy**  
+- **payment**, **payment-deploy**  
+- **frontend**, **frontend-deploy**  
+
 
 ## 📫 Connect With Me  
 📧 **Email:** *prem.pradeepreddy@gmail.com*  
