@@ -189,19 +189,15 @@ Application and deployment repositories for RoboShop services:
 
 ## 📊 GitHub Stats
 
-<h1 align='center'>GitHub Stats Terminal Style</h1>
-<p align='center'>Dynamically generate GitHub stats looking like a Terminal Interface </p>
-
 <p align="center" >
   <a href="https://github.com/PradeepReddy927/github-stats-terminal-style/actions/workflows/main.yml">
     <img src="https://github.com/PradeepReddy927/github-stats-terminal-style/actions/workflows/main.yml/badge.svg" alt="Update Github Stats" title="Terminal Style GitHub Stats">
   </a>
 </p>
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/PradeepReddy927/PradeepReddy927/main/github-stats.svg" />
+<p align='center'>
+  <img align="center" src="./github_stats.svg">
 </p>
-
 
 
 ---
