@@ -198,9 +198,10 @@ Application and deployment repositories for RoboShop services:
   </a>
 </p>
 
-<p align='center'>
-  <img align="center" src="./github_stats.svg">
+<p align="center">
+  <img src="https://raw.githubusercontent.com/PradeepReddy927/PradeepReddy927/main/github-stats.svg" />
 </p>
+
 
 
 ---
