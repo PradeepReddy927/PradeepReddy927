@@ -189,11 +189,10 @@ Application and deployment repositories for RoboShop services:
 
 ## 📊 GitHub Stats
 
-<div align="center">
-<img src="https://github-readme-stats.vercel.app/api?username=PradeepReddy927&theme=blueberry&show_icons=true&hide_border=true&count_private=true" alt="PradeepReddy927's GitHub Stats" />
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=PradeepReddy927&theme=blueberry&show_icons=true&hide_border=true&layout=compact" alt="PradeepReddy927's GitHub Stats" />
-<img src="https://streak-stats.demolab.com?user=PradeepReddy927&theme=blueberry&hide_border=true" alt="PradeepReddy927's GitHub Stats" />
-</div>
+![GitHub Stats](https://git-hub-stats-card-generator.vercel.app/api/svg?username=PradeepReddy927)
+![Top Languages](https://git-hub-stats-card-generator.vercel.app/api/svg?username=PradeepReddy927&type=languages)
+![Contributions](https://git-hub-stats-card-generator.vercel.app/api/svg?username=PradeepReddy927&type=contributions)
+![Top Repos](https://git-hub-stats-card-generator.vercel.app/api/svg?username=PradeepReddy927&type=top-repos)
 
 ---
 <picture>
