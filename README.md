@@ -189,10 +189,19 @@ Application and deployment repositories for RoboShop services:
 
 ## 📊 GitHub Stats
 
-![GitHub Stats](https://git-hub-stats-card-generator.vercel.app/api/svg?username=PradeepReddy927)
-![Top Languages](https://git-hub-stats-card-generator.vercel.app/api/svg?username=PradeepReddy927&type=languages)
-![Contributions](https://git-hub-stats-card-generator.vercel.app/api/svg?username=PradeepReddy927&type=contributions)
-![Top Repos](https://git-hub-stats-card-generator.vercel.app/api/svg?username=PradeepReddy927&type=top-repos)
+<h1 align='center'>GitHub Stats Terminal Style</h1>
+<p align='center'>Dynamically generate GitHub stats looking like a Terminal Interface </p>
+
+<p align="center" >
+  <a href="https://github.com/PradeepReddy927/github-stats-terminal-style/actions/workflows/main.yml">
+    <img src="https://github.com/PradeepReddy927/github-stats-terminal-style/actions/workflows/main.yml/badge.svg" alt="Update Github Stats" title="Terminal Style GitHub Stats">
+  </a>
+</p>
+
+<p align='center'>
+  <img align="center" src="./github_stats.svg">
+</p>
+
 
 ---
 <picture>
