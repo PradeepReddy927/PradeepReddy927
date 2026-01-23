@@ -11,7 +11,7 @@ let templateString = fs.readFileSync("template.svg", 'utf-8')
 let username = process.argv[2]
 let req_theme = process.argv[3] || "random"
 
-let user = new GithubUser(username);
+let user = new GithubUser(PradeepReddy927);
 user.fetchContent()
     .then(() => {
         let outString = nunjucks.renderString(templateString, {
