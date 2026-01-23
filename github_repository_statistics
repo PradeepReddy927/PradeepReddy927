@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub Repository Statistics</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    h1, h2, h3 {
+      margin-top: 0;
+    }
+    
+    .card {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .form-group {
+      margin-bottom: 15px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+    
+    input[type="password"], input[type="text"] {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    
+    button {
+      background-color: #0366d6;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 8px 16px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-right: 8px;
+    }
+    
+    button:hover {
+      background-color: #0256b0;
+    }
+    
+    .secondary-button {
+      background-color: #6c757d;
+    }
+    
+    .secondary-button:hover {
+      background-color: #5a6268;
+    }
+    
+    .error {
+      background-color: #ffebee;
+      border-left: 4px solid #f44336;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+    
+    .hidden {
+      display: none;
+    }
+    
+    .loader {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #0366d6;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      margin: 20px auto;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    
+    .stat-box {
+      padding: 15px;
+      border-radius: 6px;
+      background-color: #f0f7ff;
+    }
+    
+    .stat-label {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 5px;
+    }
+    
+    .stat-value {
+      font-size: 24px;
+      font-weight: 700;
+      margin: 0;
+    }
+    
+    .stat-change {
+      font-size: 12px;
+      margin-top: 4px;
+    }
+    
+    .stat-change.positive {
+      color: #2e7d32;
+    }
+    
+    .stat-change.negative {
+      color: #c62828;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    th {
+      background-color: #f5f5f5;
+      font-weight: 600;
+      color: #555;
+      cursor: pointer;
+    }
+    
+    th:hover {
+      background-color: #e3e3e3;
+    }
+    
+    tbody tr:hover {
+      background-color: #f9f9f9;
+    }
+    
+    a {
+      color: #0366d6;
+      text-decoration: none;
+    }
+    
+    a:hover {
+      text-decoration: underline;
+    }
+    
+    .sort-icon::after {
+      content: "";
+      margin-left: 5px;
+    }
+    
+    .sort-asc .sort-icon::after {
+      content: "↑";
+    }
+    
+    .sort-desc .sort-icon::after {
+      content: "↓";
+    }
+    
+    .debug-section {
+      background: #fffde7;
+      padding: 10px 15px;
+      margin-top: 20px;
+      border-radius: 6px;
+      border: 1px solid #ffd54f;
+      display: none;
+    }
+    
+    .debug-toggle {
+      font-size: 12px;
+      color: #666;
+      text-decoration: underline;
+      cursor: pointer;
+      display: inline-block;
+      margin-top: 10px;
+    }
+    
+    .change-indicator {
+      display: inline-block;
+      margin-left: 5px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    
+    .change-increase {
+      background-color: rgba(46, 125, 50, 0.1);
+      color: #2e7d32;
+    }
+    
+    .change-decrease {
+      background-color: rgba(198, 40, 40, 0.1);
+      color: #c62828;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>GitHub Repository Statistics</h1>
+    
+    <!-- Token Input Section -->
+    <div id="token-section" class="card">
+      <h2>Enter GitHub Personal Access Token</h2>
+      <div class="form-group">
+        <label for="token-input">Personal Access Token:</label>
+        <input type="password" id="token-input" placeholder="ghp_yourtokenhere" required>
+        <p style="font-size: 14px; color: #666;">
+          Your token needs "repo" scope permissions.
+        </p>
+      </div>
+      <div class="form-group">
+        <label>
+          <input type="checkbox" id="remember-token" checked>
+          Remember token in browser
+        </label>
+      </div>
+      <button id="fetch-button">Fetch Repository Data</button>
+    </div>
+    
+    <!-- Error Message -->
+    <div id="error-message" class="error hidden">
+      <strong>Error:</strong> <span id="error-text"></span>
+    </div>
+    
+    <!-- Loading Indicator -->
+    <div id="loading" class="hidden">
+      <div class="loader"></div>
+      <p style="text-align: center;">Loading repository data...</p>
+    </div>
+    
+    <!-- Results Section -->
+    <div id="results" class="hidden">
+      <!-- Action buttons -->
+      <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+        <div>
+          <button id="refresh-button">Refresh Data</button>
+          <button id="clear-button" class="secondary-button">Clear Token & Data</button>
+        </div>
+        <div>
+          <span id="last-updated" class="timestamp"></span>
+        </div>
+      </div>
+      
+      <!-- Summary Statistics -->
+      <div class="card">
+        <h2>Summary Statistics</h2>
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div class="stat-label">Total Repositories</div>
+            <div id="total-repos" class="stat-value">0</div>
+            <div id="total-repos-change" class="stat-change"></div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Total Downloads</div>
+            <div id="total-downloads" class="stat-value">0</div>
+            <div id="total-downloads-change" class="stat-change"></div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Total Stars</div>
+            <div id="total-stars" class="stat-value">0</div>
+            <div id="total-stars-change" class="stat-change"></div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Total Clones (14d)</div>
+            <div id="total-clones" class="stat-value">0</div>
+            <div id="total-clones-change" class="stat-change"></div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Total Visitors (14d)</div>
+            <div id="total-visitors" class="stat-value">0</div>
+            <div id="total-visitors-change" class="stat-change"></div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Repos with Releases</div>
+            <div id="repos-with-releases" class="stat-value">0</div>
+            <div id="repos-with-releases-change" class="stat-change"></div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Avg Downloads per Repo</div>
+            <div id="avg-downloads" class="stat-value">0</div>
+            <div id="avg-downloads-change" class="stat-change"></div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Repository Table -->
+      <div class="card">
+        <h2>Repository Details</h2>
+        <div style="overflow-x: auto;">
+          <table>
+            <thead>
+              <tr>
+                <th data-sort="name">Repository <span class="sort-icon"></span></th>
+                <th data-sort="description">Description <span class="sort-icon"></span></th>
+                <th data-sort="stars">Stars <span class="sort-icon"></span></th>
+                <th data-sort="forks">Forks <span class="sort-icon"></span></th>
+                <th data-sort="clones">Clones (14d) <span class="sort-icon"></span></th>
+                <th data-sort="visitors">Visitors (14d) <span class="sort-icon"></span></th>
+                <th data-sort="releases">Releases <span class="sort-icon"></span></th>
+                <th data-sort="downloads">Total Downloads <span class="sort-icon"></span></th>
+              </tr>
+            </thead>
+            <tbody id="repos-table">
+              <!-- Table rows will be inserted here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <!-- Debug Section Toggle -->
+      <div class="debug-toggle" id="debug-toggle">Show Debug Information</div>
+      
+      <!-- Debug Section -->
+      <div id="debug-section" class="debug-section">
+        <h3>Debug Information</h3>
+        <div id="console-output" style="background: #f5f5f5; padding: 10px; border-radius: 4px; font-family: monospace; white-space: pre-wrap; max-height: 200px; overflow-y: auto;"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Global variables
+    let reposData = [];
+    let previousReposData = [];
+    let currentToken = '';
+    let currentSortField = 'downloads';
+    let currentSortDirection = 'desc';
+    let debugOutput = [];
+    
+    // Local storage keys
+    const TOKEN_STORAGE_KEY = 'github-stats-token';
+    const REPOS_DATA_STORAGE_KEY = 'github-stats-repos-data';
+    const PREVIOUS_REPOS_DATA_KEY = 'github-stats-previous-repos-data';
+    const LAST_FETCH_TIMESTAMP_KEY = 'github-stats-last-fetch';
+    
+    // Debug logging
+    function logDebug(message) {
+      const timestamp = new Date().toLocaleTimeString();
+      const formattedMessage = `[${timestamp}] ${message}`;
+      debugOutput.push(formattedMessage);
+      console.log(message); // Also log to console
+      
+      const outputElement = document.getElementById('console-output');
+      if (outputElement) {
+        outputElement.textContent = debugOutput.join('\n');
+        outputElement.scrollTop = outputElement.scrollHeight;
+      }
+    }
+    
+    // DOM manipulation helpers
+    function showElement(id) {
+      document.getElementById(id).classList.remove('hidden');
+    }
+    
+    function hideElement(id) {
+      document.getElementById(id).classList.add('hidden');
+    }
+    
+    function displayError(message) {
+      hideElement('loading');
+      showElement('error-message');
+      document.getElementById('error-text').textContent = message;
+      logDebug(`ERROR: ${message}`);
+    }
+    
+    // Format numbers with commas
+    function formatNumber(num) {
+      return new Intl.NumberFormat().format(num);
+    }
+    
+    // Format number with sign
+    function formatWithSign(num) {
+      if (num === 0) return "No change";
+      return num > 0 ? `+${formatNumber(num)}` : formatNumber(num);
+    }
+    
+    // Format date
+    function formatDate(date) {
+      return new Date(date).toLocaleString();
+    }
+    
+    // Update change indicator
+    function updateChangeIndicator(elementId, change) {
+      const element = document.getElementById(elementId);
+      
+      if (change === 0) {
+        element.textContent = 'No change';
+        element.classList.remove('positive', 'negative');
+      } else {
+        element.textContent = formatWithSign(change);
+        element.classList.add(change > 0 ? 'positive' : 'negative');
+      }
+    }
+    
+    // Sort repositories
+    function sortRepositories(repos, field, direction) {
+      return [...repos].sort((a, b) => {
+        let valueA, valueB;
+        
+        switch(field) {
+          case 'name':
+            valueA = a.name.toLowerCase();
+            valueB = b.name.toLowerCase();
+            break;
+          case 'description':
+            valueA = (a.description || '').toLowerCase();
+            valueB = (b.description || '').toLowerCase();
+            break;
+          case 'stars':
+            valueA = a.stargazers_count;
+            valueB = b.stargazers_count;
+            break;
+          case 'forks':
+            valueA = a.forks_count;
+            valueB = b.forks_count;
+            break;
+          case 'clones':
+            valueA = a.clones_14d || 0;
+            valueB = b.clones_14d || 0;
+            break;
+          case 'visitors':
+            valueA = a.visitors_14d || 0;
+            valueB = b.visitors_14d || 0;
+            break;
+          case 'releases':
+            valueA = a.releases ? a.releases.length : 0;
+            valueB = b.releases ? b.releases.length : 0;
+            break;
+          case 'downloads':
+          default:
+            valueA = a.totalDownloads;
+            valueB = b.totalDownloads;
+            break;
+        }
+        
+        // For string comparison
+        if (typeof valueA === 'string' && typeof valueB === 'string') {
+          if (direction === 'asc') {
+            return valueA.localeCompare(valueB);
+          } else {
+            return valueB.localeCompare(valueA);
+          }
+        }
+        
+        // For number comparison
+        if (direction === 'asc') {
+          return valueA - valueB;
+        } else {
+          return valueB - valueA;
+        }
+      });
+    }
+    
+    // Find repo by name
+    function findRepoByName(repos, name) {
+      if (!repos) return null;
+      return repos.find(repo => repo.name === name);
+    }
+    
+    // Local storage functions - try/catch everything to avoid crashes
+    function saveToStorage(key, value) {
+      try {
+        localStorage.setItem(key, JSON.stringify(value));
+        return true;
+      } catch (e) {
+        logDebug(`Storage error: ${e.message}`);
+        return false;
+      }
+    }
+    
+    function getFromStorage(key) {
+      try {
+        const data = localStorage.getItem(key);
+        return data ? JSON.parse(data) : null;
+      } catch (e) {
+        logDebug(`Storage error: ${e.message}`);
+        return null;
+      }
+    }
+    
+    function removeFromStorage(key) {
+      try {
+        localStorage.removeItem(key);
+      } catch (e) {
+        logDebug(`Storage error: ${e.message}`);
+      }
+    }
+    
+    // Extract next page URL from Link header
+    function getNextPageUrl(linkHeader) {
+      if (!linkHeader) return null;
+      const links = linkHeader.split(',');
+      for (const link of links) {
+        if (link.includes('rel="next"')) {
+          const match = link.match(/<([^>]+)>/);
+          if (match) return match[1];
+          break;
+        }
+      }
+      return null;
+    }
+    
+    // Main function to fetch GitHub repository data
+    async function fetchRepositoryData(token) {
+      try {
+        // Show loading state
+        hideElement('token-section');
+        hideElement('error-message');
+        showElement('loading');
+        
+        // Save token if remember box is checked
+        if (document.getElementById('remember-token').checked) {
+          saveToStorage(TOKEN_STORAGE_KEY, token);
+          logDebug("Token saved to storage");
+        }
+        
+        // Keep token in memory
+        currentToken = token;
+        
+        // Before fetching new data, save current data as previous
+        if (reposData && reposData.length > 0) {
+          previousReposData = [...reposData];
+          saveToStorage(PREVIOUS_REPOS_DATA_KEY, previousReposData);
+          logDebug('Saved current data as previous');
+        } else {
+          previousReposData = getFromStorage(PREVIOUS_REPOS_DATA_KEY) || [];
+        }
+        
+        logDebug('Fetching repositories...');
+        
+        // Fetch all repositories with pagination
+        let allRepos = [];
+        let pageUrl = 'https://api.github.com/user/repos?per_page=100&type=owner';
+        let page = 1;
+        
+        while (pageUrl) {
+          logDebug(`Fetching page ${page} of repositories...`);
+          
+          const reposResponse = await fetch(pageUrl, {
+            headers: {
+              'Authorization': `token ${token}`
+            }
+          });
+          
+          if (!reposResponse.ok) {
+            throw new Error(`GitHub API error: ${reposResponse.status} ${reposResponse.statusText}`);
+          }
+          
+          const reposPage = await reposResponse.json();
+          logDebug(`Fetched ${reposPage.length} repositories from page ${page}`);
+          
+          allRepos = [...allRepos, ...reposPage];
+          
+          // Check for next page in Link header
+          const linkHeader = reposResponse.headers.get('Link');
+          pageUrl = getNextPageUrl(linkHeader);
+          
+          if (pageUrl) {
+            page++;
+          }
+        }
+        
+        logDebug(`Fetched a total of ${allRepos.length} repositories`);
+        
+        // Process each repository
+        const processedRepos = [];
+        
+        for (const repo of allRepos) {
+          logDebug(`Processing repository: ${repo.name}`);
+          
+          // Only include owned repositories (not forks)
+          if (repo.fork) {
+            logDebug(`Skipping forked repository: ${repo.name}`);
+            continue;
+          }
+          
+          // Fetch releases for this repository
+          const releasesResponse = await fetch(`https://api.github.com/repos/${repo.full_name}/releases`, {
+            headers: {
+              'Authorization': `token ${token}`
+            }
+          });
+          
+          let releases = [];
+          let totalDownloads = 0;
+          
+          if (releasesResponse.ok) {
+            const releasesData = await releasesResponse.json();
+            logDebug(`Found ${releasesData.length} releases for ${repo.name}`);
+            
+            // Calculate downloads for each release
+            releases = releasesData.map(release => {
+              const releaseDownloads = release.assets.reduce((total, asset) => total + asset.download_count, 0);
+              return {
+                id: release.id,
+                name: release.name || release.tag_name,
+                downloadCount: releaseDownloads,
+                publishedAt: release.published_at
+              };
+            });
+            
+            totalDownloads = releases.reduce((total, release) => total + release.downloadCount, 0);
+            logDebug(`Total downloads for ${repo.name}: ${totalDownloads}`);
+          } else {
+            logDebug(`No releases found for ${repo.name}`);
+          }
+          
+          // Fetch traffic data (clones)
+          let clones_14d = 0;
+          const clonesResponse = await fetch(`https://api.github.com/repos/${repo.full_name}/traffic/clones`, {
+            headers: {
+              'Authorization': `token ${token}`
+            }
+          });
+          
+          if (clonesResponse.ok) {
+            const clonesData = await clonesResponse.json();
+            clones_14d = clonesData.count || 0;
+            logDebug(`Clones (14d) for ${repo.name}: ${clones_14d}`);
+          } else {
+            logDebug(`Could not fetch clones for ${repo.name}`);
+          }
+          
+          // Fetch traffic data (visitors/views)
+          let visitors_14d = 0;
+          const viewsResponse = await fetch(`https://api.github.com/repos/${repo.full_name}/traffic/views`, {
+            headers: {
+              'Authorization': `token ${token}`
+            }
+          });
+          
+          if (viewsResponse.ok) {
+            const viewsData = await viewsResponse.json();
+            visitors_14d = viewsData.uniques || 0;
+            logDebug(`Visitors (14d) for ${repo.name}: ${visitors_14d}`);
+          } else {
+            logDebug(`Could not fetch visitors for ${repo.name}`);
+          }
+          
+          processedRepos.push({
+            ...repo,
+            totalDownloads,
+            releases,
+            clones_14d,
+            visitors_14d
+          });
+        }
+        
+        logDebug(`Processed ${processedRepos.length} owned repositories`);
+        
+        // Update current data
+        reposData = processedRepos;
+        
+        // Save to localStorage
+        saveToStorage(REPOS_DATA_STORAGE_KEY, processedRepos);
+        saveToStorage(LAST_FETCH_TIMESTAMP_KEY, new Date().toISOString());
+        logDebug("Data saved to storage");
+        
+        // Update timestamp display
+        const lastUpdated = document.getElementById('last-updated');
+        if (lastUpdated) {
+          lastUpdated.textContent = `Last updated: ${formatDate(new Date())}`;
+        }
+        
+        // Update UI
+        updateUI(processedRepos);
+        
+        // Hide loading, show results
+        hideElement('loading');
+        showElement('results');
+        
+        return processedRepos;
+      } catch (error) {
+        displayError(error.message);
+        return [];
+      }
+    }
+    
+    // Update the UI with repository data
+    function updateUI(repos) {
+      logDebug('Updating UI with repository data');
+      
+      // Update summary statistics
+      const totalRepos = repos.length;
+      document.getElementById('total-repos').textContent = formatNumber(totalRepos);
+      
+      const totalDownloads = repos.reduce((sum, repo) => sum + repo.totalDownloads, 0);
+      document.getElementById('total-downloads').textContent = formatNumber(totalDownloads);
+      
+      const totalStars = repos.reduce((sum, repo) => sum + repo.stargazers_count, 0);
+      document.getElementById('total-stars').textContent = formatNumber(totalStars);
+      
+      const totalClones = repos.reduce((sum, repo) => sum + (repo.clones_14d || 0), 0);
+      document.getElementById('total-clones').textContent = formatNumber(totalClones);
+      
+      const totalVisitors = repos.reduce((sum, repo) => sum + (repo.visitors_14d || 0), 0);
+      document.getElementById('total-visitors').textContent = formatNumber(totalVisitors);
+      
+      const reposWithReleases = repos.filter(repo => repo.releases && repo.releases.length > 0).length;
+      document.getElementById('repos-with-releases').textContent = formatNumber(reposWithReleases);
+      
+      const avgDownloads = repos.length > 0 ? Math.round(totalDownloads / repos.length) : 0;
+      document.getElementById('avg-downloads').textContent = formatNumber(avgDownloads);
+      
+      // Calculate changes for summary statistics if previous data exists
+      if (previousReposData && previousReposData.length > 0) {
+        logDebug('Calculating changes from previous data');
+        
+        const prevTotalRepos = previousReposData.length;
+        const prevTotalDownloads = previousReposData.reduce((sum, repo) => sum + repo.totalDownloads, 0);
+        const prevTotalStars = previousReposData.reduce((sum, repo) => sum + repo.stargazers_count, 0);
+        const prevTotalClones = previousReposData.reduce((sum, repo) => sum + (repo.clones_14d || 0), 0);
+        const prevTotalVisitors = previousReposData.reduce((sum, repo) => sum + (repo.visitors_14d || 0), 0);
+        const prevReposWithReleases = previousReposData.filter(repo => repo.releases && repo.releases.length > 0).length;
+        const prevAvgDownloads = prevTotalRepos > 0 ? Math.round(prevTotalDownloads / prevTotalRepos) : 0;
+        
+        // Update change indicators
+        updateChangeIndicator('total-repos-change', totalRepos - prevTotalRepos);
+        updateChangeIndicator('total-downloads-change', totalDownloads - prevTotalDownloads);
+        updateChangeIndicator('total-stars-change', totalStars - prevTotalStars);
+        updateChangeIndicator('total-clones-change', totalClones - prevTotalClones);
+        updateChangeIndicator('total-visitors-change', totalVisitors - prevTotalVisitors);
+        updateChangeIndicator('repos-with-releases-change', reposWithReleases - prevReposWithReleases);
+        updateChangeIndicator('avg-downloads-change', avgDownloads - prevAvgDownloads);
+      } else {
+        // No previous data, hide change indicators
+        document.getElementById('total-repos-change').textContent = '';
+        document.getElementById('total-downloads-change').textContent = '';
+        document.getElementById('total-stars-change').textContent = '';
+        document.getElementById('total-clones-change').textContent = '';
+        document.getElementById('total-visitors-change').textContent = '';
+        document.getElementById('repos-with-releases-change').textContent = '';
+        document.getElementById('avg-downloads-change').textContent = '';
+      }
+      
+      // Update repository table
+      const tableBody = document.getElementById('repos-table');
+      tableBody.innerHTML = '';
+      
+      if (repos.length === 0) {
+        const row = document.createElement('tr');
+        row.innerHTML = `<td colspan="8" style="text-align: center;">No repositories found</td>`;
+        tableBody.appendChild(row);
+        return;
+      }
+      
+      // Sort repositories
+      const sortedRepos = sortRepositories(repos, currentSortField, currentSortDirection);
+      
+      // Update sort indicators
+      document.querySelectorAll('th[data-sort]').forEach(th => {
+        const fieldName = th.getAttribute('data-sort');
+        
+        // Remove all current sort classes
+        th.classList.remove('sort-asc', 'sort-desc');
+        
+        // Add appropriate sort class
+        if (fieldName === currentSortField) {
+          th.classList.add(currentSortDirection === 'asc' ? 'sort-asc' : 'sort-desc');
+        }
+      });
+      
+      // Create table rows
+      sortedRepos.forEach(repo => {
+        const row = document.createElement('tr');
+        
+        // Check for changes if previous data exists
+        let starsChange = '';
+        let forksChange = '';
+        let clonesChange = '';
+        let visitorsChange = '';
+        let releasesChange = '';
+        let downloadsChange = '';
+        
+        if (previousReposData && previousReposData.length > 0) {
+          const prevRepo = findRepoByName(previousReposData, repo.name);
+          
+          if (prevRepo) {
+            // Calculate differences
+            const starsDiff = repo.stargazers_count - prevRepo.stargazers_count;
+            if (starsDiff !== 0) {
+              starsChange = `<span class="change-indicator ${starsDiff > 0 ? 'change-increase' : 'change-decrease'}">${formatWithSign(starsDiff)}</span>`;
+            }
+            
+            const forksDiff = repo.forks_count - prevRepo.forks_count;
+            if (forksDiff !== 0) {
+              forksChange = `<span class="change-indicator ${forksDiff > 0 ? 'change-increase' : 'change-decrease'}">${formatWithSign(forksDiff)}</span>`;
+            }
+            
+            const clonesDiff = (repo.clones_14d || 0) - (prevRepo.clones_14d || 0);
+            if (clonesDiff !== 0) {
+              clonesChange = `<span class="change-indicator ${clonesDiff > 0 ? 'change-increase' : 'change-decrease'}">${formatWithSign(clonesDiff)}</span>`;
+            }
+            
+            const visitorsDiff = (repo.visitors_14d || 0) - (prevRepo.visitors_14d || 0);
+            if (visitorsDiff !== 0) {
+              visitorsChange = `<span class="change-indicator ${visitorsDiff > 0 ? 'change-increase' : 'change-decrease'}">${formatWithSign(visitorsDiff)}</span>`;
+            }
+            
+            const currReleases = repo.releases ? repo.releases.length : 0;
+            const prevReleases = prevRepo.releases ? prevRepo.releases.length : 0;
+            const releasesDiff = currReleases - prevReleases;
+            if (releasesDiff !== 0) {
+              releasesChange = `<span class="change-indicator ${releasesDiff > 0 ? 'change-increase' : 'change-decrease'}">${formatWithSign(releasesDiff)}</span>`;
+            }
+            
+            const downloadsDiff = repo.totalDownloads - prevRepo.totalDownloads;
+            if (downloadsDiff !== 0) {
+              downloadsChange = `<span class="change-indicator ${downloadsDiff > 0 ? 'change-increase' : 'change-decrease'}">${formatWithSign(downloadsDiff)}</span>`;
+            }
+          } else {
+            // This is a new repository
+            starsChange = `<span class="change-indicator change-increase">New</span>`;
+          }
+        }
+        
+        row.innerHTML = `
+          <td>
+            <a href="${repo.html_url}" target="_blank">${repo.name}</a>
+          </td>
+          <td>${repo.description || '-'}</td>
+          <td>${formatNumber(repo.stargazers_count)} ${starsChange}</td>
+          <td>${formatNumber(repo.forks_count)} ${forksChange}</td>
+          <td>${formatNumber(repo.clones_14d || 0)} ${clonesChange}</td>
+          <td>${formatNumber(repo.visitors_14d || 0)} ${visitorsChange}</td>
+          <td>${repo.releases ? repo.releases.length : 0} ${releasesChange}</td>
+          <td>${formatNumber(repo.totalDownloads)} ${downloadsChange}</td>
+        `;
+        
+        tableBody.appendChild(row);
+      });
+      
+      logDebug('UI update complete');
+    }
+    
+    // Try to load saved data
+    function loadSavedData() {
+      try {
+        // Try to get token
+        const savedToken = getFromStorage(TOKEN_STORAGE_KEY);
+        if (savedToken) {
+          document.getElementById('token-input').value = savedToken;
+          currentToken = savedToken;
+          logDebug("Loaded saved token");
+        }
+        
+        // Try to get repository data
+        const savedRepos = getFromStorage(REPOS_DATA_STORAGE_KEY);
+        if (savedRepos && savedRepos.length > 0) {
+          reposData = savedRepos;
+          logDebug(`Loaded ${savedRepos.length} repositories from storage`);
+          
+          // Try to get previous repository data
+          const prevRepos = getFromStorage(PREVIOUS_REPOS_DATA_KEY);
+          if (prevRepos && prevRepos.length > 0) {
+            previousReposData = prevRepos;
+            logDebug(`Loaded ${prevRepos.length} previous repositories from storage`);
+          }
+          
+          // If we have both token and data, show the results
+          if (savedToken) {
+            hideElement('token-section');
+            showElement('results');
+            updateUI(savedRepos);
+            
+            // Update timestamp
+            const timestamp = getFromStorage(LAST_FETCH_TIMESTAMP_KEY);
+            if (timestamp) {
+              document.getElementById('last-updated').textContent = `Last updated: ${formatDate(new Date(timestamp))}`;
+            }
+          }
+        }
+      } catch (e) {
+        logDebug(`Error loading saved data: ${e.message}`);
+      }
+    }
+    
+    // Set up event listeners
+    document.getElementById('fetch-button').addEventListener('click', function() {
+      const token = document.getElementById('token-input').value.trim();
+      
+      if (!token) {
+        displayError('Please enter a GitHub token');
+        return;
+      }
+      
+      logDebug('Fetch button clicked');
+      fetchRepositoryData(token);
+    });
+    
+    // Refresh button handler
+    document.getElementById('refresh-button').addEventListener('click', function() {
+      if (!currentToken) {
+        displayError('No token available. Please enter a GitHub token');
+        hideElement('results');
+        showElement('token-section');
+        return;
+      }
+      
+      logDebug('Refresh button clicked');
+      fetchRepositoryData(currentToken);
+    });
+    
+    // Clear button handler
+    document.getElementById('clear-button').addEventListener('click', function() {
+      logDebug('Clear button clicked');
+      
+      // Clear storage
+      removeFromStorage(TOKEN_STORAGE_KEY);
+      removeFromStorage(REPOS_DATA_STORAGE_KEY);
+      removeFromStorage(PREVIOUS_REPOS_DATA_KEY);
+      removeFromStorage(LAST_FETCH_TIMESTAMP_KEY);
+      
+      // Reset memory variables
+      currentToken = '';
+      reposData = [];
+      previousReposData = [];
+      
+      // Reset UI
+      document.getElementById('token-input').value = '';
+      hideElement('results');
+      hideElement('error-message');
+      showElement('token-section');
+      
+      logDebug('Data cleared');
+    });
+    
+    // Sorting headers
+    document.querySelectorAll('th[data-sort]').forEach(th => {
+      th.addEventListener('click', function() {
+        const field = this.getAttribute('data-sort');
+        
+        // Toggle direction if same field, otherwise default
+        if (field === currentSortField) {
+          currentSortDirection = currentSortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+          currentSortField = field;
+          // Set default direction based on field type
+          currentSortDirection = (field === 'name' || field === 'description') ? 'asc' : 'desc';
+        }
+        
+        logDebug(`Sorting by ${field} in ${currentSortDirection} order`);
+        updateUI(reposData);
+      });
+    });
+    
+    // Debug toggle
+    document.getElementById('debug-toggle').addEventListener('click', function() {
+      const debugSection = document.getElementById('debug-section');
+      if (debugSection.style.display === 'block') {
+        debugSection.style.display = 'none';
+        this.textContent = 'Show Debug Information';
+      } else {
+        debugSection.style.display = 'block';
+        this.textContent = 'Hide Debug Information';
+      }
+    });
+    
+    // Load saved data when page loads
+    loadSavedData();
+  </script>
+</body>
+</html>
