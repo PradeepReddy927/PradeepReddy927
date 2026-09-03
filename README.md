@@ -32,152 +32,109 @@
 
 ## 📌 Projects
 
-### 🔹 **Roboshop Microservices Deployment**
-**Tools:** Shell Scripting, Ansible, Terraform, Docker, kubernetes, 
-**Highlights:**
-- Automated microservices deployment (catalogue, user, cart, payment, shipping, frontend)
+### 🛒 RoboShop — End-to-End DevOps & DevSecOps
 
----
+A hands-on microservices-based e-commerce application where I practiced implementing an end-to-end DevOps, DevSecOps, and GitOps workflow.
 
-###  🔹  **Expense e-commerce project – Manual Deployment**
+🛠️ Technology Stack
 
-**Tools Used: Linux, AWS EC2, MySQL, Nginx, Node.js
-**Highlights:
+☁️ AWS • 🐧 Linux • 🐚 Shell • ⚙️ Ansible • 🏗️ Terraform • 🐳 Docker • ☸️ Kubernetes • ☁️ Amazon EKS • 🔨 Jenkins • 🚀 GitHub Actions • 🔐 SonarQube • 🛡️ Trivy • 🔄 Argo CD • 📊 Prometheus • 📈 Grafana • 📋 ELK
 
-Deployed complete 3-tier Expense application manually
+🔄 End-to-End Workflow
 
-Installed and configured MySQL Database
+Git → 🔄 CI/CD → 🔎 SonarQube → ✅ Quality Gate → 🛡️ Trivy → 🐳 Docker → ☸️ Kubernetes/EKS → 🚀 Argo CD → 📊 Monitoring → 📋 Logging
 
-Deployed Backend service using Node.js with systemd
+📌 Project Implementation
 
-Deployed Frontend using Nginx
+* 🐚 Automated RoboShop component installation and configuration using Bash/Shell scripting
+* ⚙️ Automated Linux server configuration using Ansible playbooks and reusable roles
+* 🏗️ Provisioned AWS infrastructure using Terraform
+* 🧩 Created reusable Terraform configurations and modules
+* 🐳 Containerized RoboShop microservices using Docker
+* ☸️ Deployed microservices on Kubernetes and Amazon EKS
+* ⚙️ Configured Kubernetes Deployments, Services, ConfigMaps, Secrets, Ingress, RBAC, and storage
+* ⛵ Practiced Helm-based Kubernetes deployments
+* 📈 Practiced Kubernetes scaling, scheduling, and deployment strategies
+* 🔄 Built CI/CD pipelines using Jenkins and GitHub Actions
+* 🔨 Practiced Jenkins pipelines, agents, multibranch pipelines, and shared libraries
+* 🔎 Integrated SonarQube for static code analysis and quality gates
+* 🛡️ Integrated Trivy for container image vulnerability scanning
+* 🔐 Practiced DevSecOps by integrating security checks into CI/CD
+* 🚀 Implemented GitOps deployment concepts using Argo CD
+* 📊 Monitored infrastructure and applications using Prometheus and Grafana
+* 🚨 Configured Node Exporter and Alertmanager for monitoring and alerting
+* 📋 Implemented centralized logging using Elasticsearch, Logstash, Kibana, and Filebeat
+* 🧠 Practiced troubleshooting across Linux, AWS, Terraform, Docker, Kubernetes, EKS, CI/CD, and application deployments
 
-Managed EC2 instances, security groups, firewall, and networking configurations manually
+🎯 Key Skills Demonstrated
 
-Ensured full connectivity between Database → Backend → Frontend
+🐧 Linux Administration • 🐚 Shell Scripting • ☁️ AWS • 🏗️ Terraform • ⚙️ Ansible • 🐳 Docker • ☸️ Kubernetes • ☁️ Amazon EKS • 🔨 Jenkins • 🚀 GitHub Actions • 🔐 DevSecOps • 🔎 SonarQube • 🛡️ Trivy • 🔄 Argo CD • 📊 Prometheus • 📈 Grafana • 📋 ELK • 🔄 GitOps • 🚀 CI/CD • ☁️ Cloud Automation • 🧠 Troubleshooting
 
----
-## 🏗️ End-to-End DevOps Project – RoboShop
+⸻
 
-This profile contains a **complete DevOps lifecycle implementation** of the RoboShop microservices application, covering:
+☁️ AWS Cloud Projects
 
-- Infrastructure provisioning on AWS using Terraform  
-- Configuration management with Ansible  
-- Containerization using Docker  
-- Kubernetes deployments (EKS)  
-- CI/CD pipelines with Jenkins  
-- Helm-based packaging  
-- GitOps-based deployments using ArgoCD  
+🏗️ Capstone Project 1 — Scalable Web Application on AWS
 
-The projects follow **real-world DevOps architecture and best practices**.
+Built and practiced a scalable web application architecture using AWS services, focusing on cloud infrastructure, application scalability, networking, and high availability.
 
----
+🛠️ AWS Services
 
-## 🐚 Shell Scripting & Linux Automation
+☁️ Amazon EC2 • 🌐 Amazon VPC • 🪣 Amazon S3 • ⚖️ Elastic Load Balancing • 📈 Auto Scaling • 🔐 IAM
 
-Repositories focused on Linux administration and automation:
+📌 Project Highlights
 
-- **shell-roboshop** – Automated installation and configuration of RoboShop services using Shell scripts  
-- **shell-roboshop-common** – Common reusable shell functions and shared logic  
-- **shell-practice** – Bash scripting fundamentals and practice scripts  
+* 🏗️ Designed a scalable AWS application architecture
+* 💻 Configured compute resources using EC2
+* 🌐 Worked with VPC networking and AWS infrastructure
+* 🪣 Used S3 for cloud storage
+* ⚖️ Configured load balancing for application traffic
+* 📈 Practiced Auto Scaling for application capacity
+* 🔐 Applied IAM for access control and AWS resource security
 
-✔ Emphasis on automation, repeatability, and error handling.
+⸻
 
----
+⚡ Mini Capstone Project — Auto Scaling Deep Dive
 
-## ⚙️ Ansible – Configuration Management
+Practiced building a highly available and scalable web application using EC2, Application Load Balancer, EFS, Launch Template, Auto Scaling, and CloudWatch.
 
-Repositories demonstrating Ansible usage for application deployment and server configuration:
+🛠️ AWS Services
 
-- **ansible** – Ansible fundamentals and playbooks  
-- **ansible-roboshop** – RoboShop deployment using Ansible  
-- **ansible-roboshop-roles** – Role-based Ansible architecture  
-- **ansible-roboshop-roles-tf** – Ansible integrated with Terraform  
+💻 EC2 • ⚖️ ALB • 📁 EFS • 📋 Launch Template • 📈 Auto Scaling • 📊 CloudWatch
 
-✔ Role-based design  
-✔ Idempotent configurations  
-✔ Environment-specific deployments  
+📌 Project Highlights
 
----
+* 💻 Created EC2 instances for the web application
+* ⚖️ Configured an Application Load Balancer
+* 🎯 Created and configured Target Groups
+* 📋 Used Launch Templates for standardized EC2 configuration
+* 📈 Configured Auto Scaling for dynamic instance management
+* 📁 Used EFS as shared storage across EC2 instances
+* 📊 Configured CloudWatch monitoring
+* ❤️‍🩹 Practiced health checks and load balancing
+* 🔄 Tested scaling behavior and application availability
+* 🧠 Troubleshot EC2, ALB, EFS, Auto Scaling, and CloudWatch configurations
 
-## 🌍 Terraform – AWS Infrastructure as Code
+⸻
 
-Terraform repositories covering AWS infrastructure provisioning:
+📸 Capstone Project 2 — Serverless Scalable Photo Sharing Application
 
-- **terraform-multiple-env** – Multi-environment Terraform setup  
-- **terraform-aws-instance** – EC2 provisioning  
-- **terraform-aws-vpc** – VPC module implementation  
-- **terraform-aws-sg** – Security Group module  
-- **terraform-roboshop-component** – Component-based infrastructure design  
-- **roboshop-dev-infra** – Complete RoboShop AWS infrastructure  
-- **roboshop-terraform-eks** – EKS provisioning using Terraform  
+Built and practiced a serverless and scalable photo-sharing application using managed AWS services.
 
-✔ Modular and reusable Terraform code  
-✔ Secure and scalable AWS architecture  
+🛠️ AWS Services
 
----
+🪣 Amazon S3 • 🗄️ DynamoDB • 🔐 Amazon Cognito • 🌐 API Gateway • ⚡ AWS Lambda
 
-## 🐳 Docker – Containerization
+📌 Project Highlights
 
-- **dockerfiles** – Dockerfiles for microservices  
-- **roboshop-docker** – Containerized RoboShop services  
-
-✔ Focus on building optimized and production-ready images.
-
----
-
-## ☸️ Kubernetes – Container Orchestration
-
-Kubernetes repositories demonstrating core and advanced concepts:
-
-- **k8-roboshop** – RoboShop deployments on Kubernetes  
-- **k8-roboshop-databases** – Database and cache deployments  
-- **k8-selectors** – Labels and selectors  
-- **k8-rbac** – Role-Based Access Control  
-- **k8-ingress** – Ingress configuration  
-- **k8-resources** – Resource requests and limits  
-- **k8-blue-green** – Blue-Green deployment strategy  
-- **eksctl** – EKS cluster lifecycle management  
-
-✔ Production-style Kubernetes configurations  
-✔ Security, traffic management, and rollout strategies  
-
----
-
-## 📦 Helm & GitOps
-
-- **roboshop-helm** – Helm charts for RoboShop microservices  
-- **eks-argocd** – GitOps-based Kubernetes deployments using ArgoCD  
-
-✔ Declarative deployments  
-✔ Git-driven cluster state management  
-
----
-
-## 🔁 CI/CD & DevOps Practices
-
-Repositories related to CI/CD pipelines and DevOps methodologies:
-
-- **jenkins** – Jenkins pipelines  
-- **jenkins-shared-library** – Reusable Jenkins shared libraries  
-- **cicd-tools** – CI/CD tools and integrations  
-- **branching-strategy** – Git branching models  
-- **concepts** – DevOps and cloud concepts  
-
-✔ End-to-end build, test, and deployment automation  
-
----
-
-## 🧩 Microservices Repositories
-
-Application and deployment repositories for RoboShop services:
-
-- **catalogue**, **catalogue-deploy**, **catalogue-unit-tests**  
-- **user**, **user-deploy**  
-- **cart**, **cart-deploy**  
-- **shipping**, **shipping-deploy**  
-- **payment**, **payment-deploy**  
-- **frontend**, **frontend-deploy**  
+* 🪣 Used S3 for scalable object and photo storage
+* ⚡ Used Lambda for serverless application logic
+* 🌐 Configured API Gateway for application APIs
+* 🗄️ Used DynamoDB for NoSQL database operations
+* 🔐 Configured Cognito for user authentication
+* 🔄 Practiced event-driven and serverless architecture concepts
+* ☁️ Worked with AWS managed services to reduce infrastructure management
+* 📈 Practiced designing scalable cloud-native application components
 
 
 ## 📫 Connect With Me  
